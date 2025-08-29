@@ -6,9 +6,16 @@
 #
 # This module is similar to FindLua51.cmake except that it finds LuaJit instead.
 
+# Try pkg-config first
+find_package(PkgConfig QUIET)
+if(PKG_CONFIG_FOUND)
+    pkg_check_modules(PC_LUAJIT QUIET luajit)
+endif()
+
 FIND_PATH(LUA_INCLUDE_DIR luajit.h
 	HINTS
 	$ENV{LUA_DIR}
+	${PC_LUAJIT_INCLUDE_DIRS}
 	PATH_SUFFIXES include/luajit-2.0 include/luajit-5_1-2.0 include
 	PATHS
 	~/Library/Frameworks
@@ -23,6 +30,7 @@ FIND_LIBRARY(LUA_LIBRARY
 	NAMES luajit-5.1
 	HINTS
 	$ENV{LUA_DIR}
+	${PC_LUAJIT_LIBRARY_DIRS}
 	PATH_SUFFIXES lib64 lib
 	PATHS
 	~/Library/Frameworks
@@ -43,7 +51,7 @@ ENDIF()
 INCLUDE(FindPackageHandleStandardArgs)
 # handle the QUIETLY and REQUIRED arguments and set LUAJIT_FOUND to TRUE if
 # all listed variables are TRUE
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(LuaJit
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(LuaJIT
 	REQUIRED_VARS LUA_LIBRARY LUA_INCLUDE_DIR
 	VERSION_VAR LUA_VERSION_STRING)
 

@@ -6,7 +6,6 @@ CFLAGS = -fno-strict-aliasing -g -Wall -Wextra \
 	$(CFLAGS_EXTRA) \
 	-Iinclude \
 	-Ixlibinc \
-	-I/usr/local/include \
 	$(HEADERS_SDL) \
 	$(HEADERS_ENet) \
 	$(HEADERS_Lua)
@@ -15,7 +14,7 @@ HEADERS_SDL = `sdl2-config --cflags`
 HEADERS_ENet = `pkg-config libenet --cflags`
 HEADERS_Lua = `./findlua.sh --cflags`
 
-LDFLAGS = -g -I/usr/local/include $(LDFLAGS_EXTRA)
+LDFLAGS = -g $(LDFLAGS_EXTRA)
 LIBS_SDL = `sdl2-config --libs`
 LIBS_ENet = `pkg-config libenet --libs`
 LIBS_Lua = `./findlua.sh --libs`

@@ -1,3 +1,9 @@
+# Try pkg-config first
+find_package(PkgConfig QUIET)
+if(PKG_CONFIG_FOUND)
+    pkg_check_modules(PC_LUA QUIET lua)
+endif()
+
 SET(_POSSIBLE_LUA_INCLUDE include include/lua)
 SET(_POSSIBLE_LUA_LIBRARY lua)
 
@@ -11,6 +17,7 @@ ENDFOREACH(_SUFFIX)
 FIND_PATH(LUA_INCLUDE_DIR lua.h
   HINTS
   $ENV{LUA_DIR}
+  ${PC_LUA_INCLUDE_DIRS}
   PATH_SUFFIXES ${_POSSIBLE_LUA_INCLUDE}
   PATHS
   ~/Library/Frameworks
@@ -27,7 +34,8 @@ FIND_PATH(LUA_INCLUDE_DIR lua.h
 FIND_LIBRARY(LUA_LIBRARY
   NAMES ${_POSSIBLE_LUA_LIBRARY}
   HINTS
-  $ENV{LUA_DIR}  
+  $ENV{LUA_DIR}
+  ${PC_LUA_LIBRARY_DIRS}
   PATH_SUFFIXES lib64 lib
   PATHS
   ~/Library/Frameworks
