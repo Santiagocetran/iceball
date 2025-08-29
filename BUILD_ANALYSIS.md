@@ -68,7 +68,7 @@ For a project from 2012-2015, this is actually quite impressive. The build syste
 
 ## 🚀 Recommended Improvements
 
-git### High Priority ✅ COMPLETED
+### High Priority ✅ COMPLETED
 
 1. **Modernize CMake** ✅
    ```cmake
