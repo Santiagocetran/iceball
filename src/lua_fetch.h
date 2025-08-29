@@ -354,7 +354,25 @@ int icelua_fn_common_fetch_poll(lua_State *L)
 				lua_pushlstring(L, to_client_local.cfetch_ubuf, to_client_local.cfetch_ulen);
 				ret = 1;
 #else
-				it_module_t *mus = sackit_module_load_memory(to_client_local.cfetch_ubuf, to_client_local.cfetch_ulen);
+				// create temp file (sackit doesn't support loading from memory, at least right now)
+				// "Never use this function." i have no other choice
+				char *tfname = tempnam(NULL, "ibsit");
+				if(tfname == NULL)
+				{
+					ret = 0;
+					break;
+				}
+				FILE *fp = fopen(tfname, "wb");
+				if(fp == NULL)
+				{
+					ret = 0;
+					free(tfname);
+					break;
+				}
+				fwrite(to_client_local.cfetch_ubuf, to_client_local.cfetch_ulen, 1, fp);
+				fclose(fp);
+
+				it_module_t *mus = sackit_module_load(tfname);
 				if(mus == NULL)
 				{
 					ret = 0;
@@ -362,6 +380,8 @@ int icelua_fn_common_fetch_poll(lua_State *L)
 					ret = 1;
 					lua_pushlightuserdata(L, mus);
 				}
+
+				free(tfname);
 #endif
 			} break;
 
