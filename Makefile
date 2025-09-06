@@ -6,6 +6,7 @@ CFLAGS = -fno-strict-aliasing -g -Wall -Wextra \
 	$(CFLAGS_EXTRA) \
 	-Iinclude \
 	-Ixlibinc \
+	-Iexternal/sackit \
 	$(HEADERS_SDL) \
 	$(HEADERS_ENet) \
 	$(HEADERS_Lua)
@@ -20,7 +21,7 @@ LIBS_ENet = `pkg-config libenet --libs`
 LIBS_Lua = `./findlua.sh --libs`
 # Lua is not an acronym. Get used to typing it with lower case u/a.
 LIBS_zlib = -lz
-LIBS_sackit = xlibinc/libsackit.a
+LIBS_sackit = external/sackit/libsackit.a
 LIBS = -Lxlibinc -lm $(LIBS_Lua) $(LIBS_SDL) $(LIBS_zlib) $(LIBS_sackit) -lGL $(LIBS_ENet) -ldl
 
 BINNAME = iceball

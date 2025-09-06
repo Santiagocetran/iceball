@@ -5,6 +5,7 @@ CFLAGS = -fno-strict-aliasing -g -Wall -Wextra \
 	$(CFLAGS_EXTRA) \
 	-DUSE_OPENGL -DAPPLE \
 	-I $(INCDIR) -Ixlibinc \
+	-Iexternal/sackit \
 	$(HEADERS_SDL) \
 	$(HEADERS_ENet) \
 	$(HEADERS_Lua)
@@ -19,7 +20,7 @@ LIBS_ENet = `pkg-config libenet --libs`
 LIBS_Lua = `./findlua.sh --libs`
 # Lua is not an acronym. Get used to typing it with lower case u/a.
 LIBS_zlib = -lz
-LIBS_sackit = -lsackit
+LIBS_sackit = external/sackit/libsackit.a
 LIBS_gl = -L/System/Library/Frameworks/OpenGL.framework/Libraries -lGL
 LIBS = -Lxlibinc -lm $(LIBS_Lua) $(LIBS_SDL) $(LIBS_zlib) $(LIBS_sackit) $(LIBS_gl) $(LIBS_ENet)
 
