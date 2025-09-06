@@ -4,6 +4,14 @@ Iceball is both a highly-extensible engine on top of which people can do anythin
 # Getting started
 Just want to play Iceball? You can grab the latest build from [iceball.build](http://iceball.build/). If you want to modify the source or just simply build Iceball yourself, follow the [instructions](https://github.com/iamgreaser/iceball/wiki/Building) on the wiki.
 
+## Building from source
+Before building, make sure to initialize the Git submodules:
+```bash
+git submodule update --init --recursive
+```
+
+This will download the required dependencies (such as sackit) automatically.
+
 If you're planning on contributing to the Iceball project, please check out [contribution guidelines](https://github.com/iamgreaser/iceball/wiki/Helping-out) on the wiki as well. All help is appreciated!
 
 # Community

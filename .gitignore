@@ -45,12 +45,37 @@ xlibinc/sackit.h
 
 #cmake cache files
 CMakeFiles
-CmakeCache.txt
+CMakeCache.txt
 cmake_install.cmake
 src/iceball.dir
 src/iceball-soft.dir
 src/iceded.dir
 ZERO_CHECK.dir
+
+# cmake generated files
+*.cmake
+!CMakeLists.txt
+!cmake/*.cmake
+!cmake/*.cmake.in
+
+# build directories
+build*/
+build_test/
+build_*/
+
+# generated makefiles
+Makefile
+!Makefile.in
+!Makefile.*
+
+# compiled libraries
+*.a
+*.so
+*.dylib
+*.dll
+
+# compiled executables
+iceball*
 
 # some cmake generated shit that will vs.net notify of cmake file changes.
 ALL_BUILD.vcproj

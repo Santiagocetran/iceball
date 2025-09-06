@@ -4,7 +4,6 @@ You can either:
 2. read the tutorial in pkg/iceball/halp/texts.lua using something that isn't Notepad.
 
 The building information is a bit out of date
-- you need to copy sackit and enet to xlibinc/ or winlibs/ depending on your OS.
 
 Original text follows.
 

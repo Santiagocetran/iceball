@@ -105,8 +105,10 @@ else()
     find_package(Lua REQUIRED)
 endif()
 
-# Find sackit (custom module)
-find_package(sackit REQUIRED)
+# Add sackit submodule
+add_subdirectory(external/sackit)
+set(sackit_LIBRARIES sackit)
+set(sackit_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/external/sackit)
 
 # Source file organization
 file(GLOB LUA_FILES 
@@ -161,7 +163,7 @@ target_link_libraries(iceball PRIVATE
     ${DL_LIBRARY}
     ${ENet_LIBRARIES}
     ${ZLIB_LIBRARIES}
-    ${sackit_LIBRARY}
+    sackit
     ${LUA_LIBRARIES}
     ${SDL2_LIBRARIES}
     ${OPENGL_LIBRARIES}
